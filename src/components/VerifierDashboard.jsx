@@ -95,7 +95,7 @@ function VerifierDashboard({ contract }) {
    */
   const renderResult = () => {
     if (isVerifying) {
-      return <p className="text-center text-blue-600">Verifying...</p>;
+      return <p className="text-center text-blue-600 dark:text-blue-400">Verifying...</p>;
     }
     
     if (verificationResult === null) {
@@ -104,18 +104,18 @@ function VerifierDashboard({ contract }) {
     
     if (verificationResult === true) {
       return (
-        <div className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-md">
+        <div className="mt-4 p-4 bg-green-100 dark:bg-green-900/30 border border-green-400 dark:border-green-500/50 text-green-800 dark:text-green-300 rounded-lg backdrop-blur-sm">
           <h4 className="font-bold text-lg">✅ Document is Authentic</h4>
-          <p>This document's hash was found on the blockchain and is verified.</p>
+          <p className="text-green-700 dark:text-green-200">This document's hash was found on the blockchain and is verified.</p>
         </div>
       );
     }
     
     if (verificationResult === false) {
       return (
-        <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-md">
+        <div className="mt-4 p-4 bg-red-100 dark:bg-red-900/30 border border-red-400 dark:border-red-500/50 text-red-800 dark:text-red-300 rounded-lg backdrop-blur-sm">
           <h4 className="font-bold text-lg">❌ Document NOT Recognized</h4>
-          <p>This document's hash was not found on the blockchain, or the document has been altered.</p>
+          <p className="text-red-700 dark:text-red-200">This document's hash was not found on the blockchain, or the document has been altered.</p>
         </div>
       );
     }
@@ -123,29 +123,31 @@ function VerifierDashboard({ contract }) {
 
   return (
     <div className="space-y-4">
-      <p className="text-sm text-gray-600">
+      <p className="text-sm text-gray-700 dark:text-slate-300">
         Upload a document (e.g., a diploma PDF) to check its authenticity
         against the blockchain.
       </p>
       
       {/* File Upload Input */}
       <div>
-        <label htmlFor="fileVerify" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="fileVerify" className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
           Upload Document
         </label>
         <input
           type="file"
           id="fileVerify"
           onChange={handleFileChange}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-sm
+          className="w-full px-3 py-2 bg-white dark:bg-slate-700/50 border border-gray-300 dark:border-slate-600 rounded-md shadow-sm text-sm text-gray-900 dark:text-slate-200
                      file:mr-4 file:py-2 file:px-4
                      file:rounded-md file:border-0
                      file:text-sm file:font-semibold
-                     file:bg-gray-50 file:text-gray-700
-                     hover:file:bg-gray-100"
+                     file:bg-gray-600 file:text-white
+                     hover:file:bg-gray-700
+                     dark:file:bg-slate-600 dark:file:text-white
+                     dark:hover:file:bg-slate-500"
         />
         {fileHash && (
-          <p className="mt-2 text-xs text-gray-600 truncate">
+          <p className="mt-2 text-xs text-gray-600 dark:text-slate-400 truncate font-mono">
             <strong>File Hash:</strong> {fileHash}
           </p>
         )}
@@ -155,8 +157,8 @@ function VerifierDashboard({ contract }) {
       <button
         onClick={handleVerify}
         disabled={!fileHash || isVerifying}
-        className="w-full px-4 py-2 bg-gray-800 text-white font-bold rounded-md shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition duration-300
-                   disabled:bg-gray-400"
+        className="w-full px-4 py-2 bg-gradient-to-r from-gray-700 to-gray-800 dark:from-slate-600 dark:to-slate-700 text-white font-bold rounded-md shadow-lg hover:shadow-xl hover:from-gray-800 hover:to-gray-900 dark:hover:from-slate-700 dark:hover:to-slate-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 dark:focus:ring-slate-500 transition-all duration-300 transform hover:scale-[1.02]
+                   disabled:bg-gray-400 dark:disabled:bg-slate-600 disabled:cursor-not-allowed disabled:transform-none"
       >
         {isVerifying ? 'Checking...' : 'Verify Authenticity'}
       </button>

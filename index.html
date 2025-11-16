@@ -5,6 +5,21 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>frontend</title>
+    <script>
+      // Set theme before React loads to prevent flash
+      (function() {
+        const saved = localStorage.getItem('theme');
+        const shouldBeDark = saved ? saved === 'dark' : true; // Default to dark
+        const root = document.documentElement;
+        if (shouldBeDark) {
+          root.classList.add('dark');
+          root.setAttribute('data-theme', 'dark');
+        } else {
+          root.classList.remove('dark');
+          root.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

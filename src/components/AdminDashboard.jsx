@@ -211,7 +211,7 @@ function AdminDashboard({ contract, isLoading, setIsLoading }) {
     if (credentialType === 'STUDENT_ID') {
       return (
         <div className="mb-4">
-          <label htmlFor="studentName" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="studentName" className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
             Student's Full Name
           </label>
           <input
@@ -219,7 +219,7 @@ function AdminDashboard({ contract, isLoading, setIsLoading }) {
             id="studentName"
             value={studentName}
             onChange={(e) => setStudentName(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 bg-white dark:bg-slate-700/50 border border-gray-300 dark:border-slate-600 rounded-md shadow-sm text-gray-900 dark:text-slate-200 placeholder-gray-400 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
             placeholder="e.g., Jane Doe"
             required
           />
@@ -229,23 +229,23 @@ function AdminDashboard({ contract, isLoading, setIsLoading }) {
       // For 'DIPLOMA', 'TRANSCRIPT', etc.
       return (
         <div className="mb-4">
-          <label htmlFor="docFile" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="docFile" className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
             Upload Document (PDF, etc.)
           </label>
           <input
             type="file"
             id="docFile"
             onChange={handleFileChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-sm 
+            className="w-full px-3 py-2 bg-white dark:bg-slate-700/50 border border-gray-300 dark:border-slate-600 rounded-md shadow-sm text-sm text-gray-900 dark:text-slate-200
                        file:mr-4 file:py-2 file:px-4
                        file:rounded-md file:border-0
                        file:text-sm file:font-semibold
-                       file:bg-blue-50 file:text-blue-700
-                       hover:file:bg-blue-100"
+                       file:bg-blue-600 file:text-white
+                       hover:file:bg-blue-700"
             required
           />
           {documentHash && (
-            <p className="mt-2 text-xs text-gray-600 truncate">
+            <p className="mt-2 text-xs text-gray-600 dark:text-slate-400 truncate font-mono">
               <strong>File Hash:</strong> {documentHash}
             </p>
           )}
@@ -259,7 +259,7 @@ function AdminDashboard({ contract, isLoading, setIsLoading }) {
     <form onSubmit={handleSubmit} className="space-y-4">
       {/* Student Address Input */}
       <div className="mb-4">
-        <label htmlFor="studentAddress" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="studentAddress" className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
           Student's Wallet Address
         </label>
         <input
@@ -267,7 +267,7 @@ function AdminDashboard({ contract, isLoading, setIsLoading }) {
           id="studentAddress"
           value={studentAddress}
           onChange={(e) => setStudentAddress(e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          className="w-full px-3 py-2 bg-white dark:bg-slate-700/50 border border-gray-300 dark:border-slate-600 rounded-md shadow-sm text-gray-900 dark:text-slate-200 placeholder-gray-400 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
           placeholder="0x..."
           required
         />
@@ -275,14 +275,14 @@ function AdminDashboard({ contract, isLoading, setIsLoading }) {
       
       {/* Credential Type Selector */}
       <div className="mb-4">
-        <label htmlFor="credentialType" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="credentialType" className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
           Credential Type
         </label>
         <select
           id="credentialType"
           value={credentialType}
           onChange={(e) => setCredentialType(e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          className="w-full px-3 py-2 bg-white dark:bg-slate-700/50 border border-gray-300 dark:border-slate-600 rounded-md shadow-sm text-gray-900 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
         >
           <option value="STUDENT_ID">Student ID</option>
           <option value="DIPLOMA">Diploma</option>
@@ -297,8 +297,8 @@ function AdminDashboard({ contract, isLoading, setIsLoading }) {
       <button
         type="submit"
         disabled={isLoading} // Disable button while loading
-        className="w-full px-4 py-2 bg-blue-600 text-white font-bold rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300
-                   disabled:bg-gray-400"
+        className="w-full px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-md shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 transform hover:scale-[1.02]
+                   disabled:bg-gray-400 dark:disabled:bg-slate-600 disabled:cursor-not-allowed disabled:transform-none"
       >
         {isLoading ? 'Issuing... (Please Wait)' : 'Issue Credential'}
       </button>
